@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Pulling changes from GitHub..."
-
+git stash && git pull origin main --rebase && git stash apply
 
 echo "Which service do you want to run?"
 echo "1- Auth service"
