@@ -48,4 +48,4 @@ jobs:
 
       - name: Update containers
         run: |
-          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.REMOTE_USER }}@${{ secrets.SERVER_IP }} "cd ${{ secrets.REMOTE_PATH }} && docker-compose up --detach --force-recreate"
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.REMOTE_USER }}@${{ secrets.SERVER_IP }} "cd ${{ secrets.REMOTE_PATH }} && docker-compose down --rmi all && docker compose up -d"
