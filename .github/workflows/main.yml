@@ -23,8 +23,18 @@ jobs:
 
       - name: Generate env file
         run: |
-          sudo chmod +x generate_env.sh
-          ./generate_env.sh
+          cat <<EOL > .env
+          # Staff management service
+          staff_management_DB_CONNECTION=${{ secrets.staff_management_DB_CONNECTION }}
+          staff_management_DB_HOST=${{ secrets.staff_management_DB_HOST }}
+          staff_management_DB_PORT=${{ secrets.staff_management_DB_PORT }}
+          staff_management_DB_DATABASE=${{ secrets.staff_management_DB_DATABASE }}
+          staff_management_DB_USERNAME=${{ secrets.staff_management_DB_USERNAME }}
+          staff_management_DB_PASSWORD=${{ secrets.staff_management_DB_PASSWORD }}
+          
+          # User management service
+          user_management_CONNECTION_STRING=${{ secrets.user_management_CONNECTION_STRING }}
+          EOL
 
       - name: Deploy to the server
         uses: burnett01/rsync-deployments@7.0.2
