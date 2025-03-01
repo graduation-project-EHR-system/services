@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Write SSH private key to the file
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Generate env file
+        run: |
+          sudo chmod +x generate_env.sh
+          ./generate_env.sh
+
+      - name: Deploy to the server
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: -avzr --exclude=.git
+          path: ./
+          remote_path: ${{ secrets.REMOTE_PATH }}
+          remote_host: ${{ secrets.SERVER_IP }}
+          remote_user: ${{ secrets.REMOTE_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Update containers
+        run: |
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.REMOTE_USER }}@${{ secrets.SERVER_IP }} "cd ${{ secrets.REMOTE_PATH }} && docker-compose up --detach --force-recreate"
