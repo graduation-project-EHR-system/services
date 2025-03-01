@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  usermanagement:
+    image: shehabwaleed/gp_auth_service:latest
+    hostname: "userManagementService"
+    ports:
+      - "8080:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=${user_management_CONNECTION_STRING}
+
+  staffManagement:
+    image: shehabwaleed/gp_staff_management:latest
+    hostname: "staffManagementService"
+    ports:
+      - "8090:80"
+    environment:
+      DB_CONNECTION: ${staff_management_DB_CONNECTION}
+      DB_HOST: ${staff_management_DB_HOST}
+      DB_PORT: ${staff_management_DB_PORT}
+      DB_DATABASE: ${staff_management_DB_DATABASE}
+      DB_USERNAME: ${staff_management_DB_USERNAME}
+      DB_PASSWORD: ${staff_management_DB_PASSWORD}
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    command: --interval 5
