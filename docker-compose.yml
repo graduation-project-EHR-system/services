@@ -21,6 +21,7 @@ services:
       DB_DATABASE: ${staff_management_DB_DATABASE}
       DB_USERNAME: ${staff_management_DB_USERNAME}
       DB_PASSWORD: ${staff_management_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
 
   watchtower:
     image: containrrr/watchtower
