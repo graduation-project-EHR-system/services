@@ -31,7 +31,7 @@ jobs:
           staff_management_DB_DATABASE=${{ secrets.staff_management_DB_DATABASE }}
           staff_management_DB_USERNAME=${{ secrets.staff_management_DB_USERNAME }}
           staff_management_DB_PASSWORD=${{ secrets.staff_management_DB_PASSWORD }}
-          JWT_SECRET=${{ secrets.JET_SECRET }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
           
           # User management service
           user_management_CONNECTION_STRING=${{ secrets.user_management_CONNECTION_STRING }}
