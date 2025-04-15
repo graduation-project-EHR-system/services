@@ -55,10 +55,12 @@ services:
       - "9092:9092"
     command: >
       bash -c "
+        mkdir -p /etc/kafka &&
         echo 'KafkaServer {
           org.apache.kafka.common.security.plain.PlainLoginModule required
           username=\"${KAFKA_USERNAME}\"
           password=\"${KAFKA_PASSWORD}\"
+          user_${KAFKA_USERNAME}=\"${KAFKA_PASSWORD}\"
         };' > /etc/kafka/kafka_server_jaas.conf &&
         /etc/kafka/docker/run
       "
