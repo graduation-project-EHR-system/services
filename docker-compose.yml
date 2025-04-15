@@ -60,9 +60,9 @@ services:
           org.apache.kafka.common.security.plain.PlainLoginModule required
           username=\"${KAFKA_USERNAME}\"
           password=\"${KAFKA_PASSWORD}\"
-          user_${KAFKA_USERNAME}=\"${KAFKA_PASSWORD}\"
+          user_${KAFKA_USERNAME}=\"${KAFKA_PASSWORD}\";
         };' > /etc/kafka/kafka_server_jaas.conf &&
-        /etc/kafka/docker/run
+        /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
       "
 
   watchtower:
