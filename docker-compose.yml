@@ -24,38 +24,40 @@ services:
       JWT_SECRET: ${JWT_SECRET}
 
   zookeeper:
-    image: wurstmeister/zookeeper:latest
-    hostname: zookeeper
-    environment:
-      ZOOKEEPER_TICK_TIME: 2000
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
     ports:
       - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    image: wurstmeister/kafka:latest
-    hostname: kafka
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
     depends_on:
       - zookeeper
-    environment:
-      KAFKA_ADVERTISED_LISTENERS: SASL_PLAINTEXT://kafka:9092,SASL_PLAINTEXT_HOST://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_PLAINTEXT_HOST:SASL_PLAINTEXT
-      KAFKA_LISTENERS: SASL_PLAINTEXT://0.0.0.0:9092,SASL_PLAINTEXT_HOST://0.0.0.0:9093
-      KAFKA_INTER_BROKER_LISTENER_NAME: SASL_PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      
-      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
-      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
-      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
-      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
-      
-      KAFKA_OPTS: "-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf
     ports:
       - "9092:9092"
+      - "29092:29092" # internal access
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: kafdrop
+    depends_on:
+      - kafka
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKER_CONNECT: kafka:29092
+      JVM_OPTS: "-Xms32M -Xmx64M"
 
   watchtower:
     image: containrrr/watchtower
