@@ -35,6 +35,13 @@ jobs:
           
           # User management service
           user_management_CONNECTION_STRING=${{ secrets.user_management_CONNECTION_STRING }}
+
+          # Kafka
+          KAFKA_SASL_PLAIN_USERNAME=${{ secrets.KAFKA_SASL_PLAIN_USERNAME }}
+          KAFKA_SASL_PLAIN_PASSWORD=${{ secrets.KAFKA_SASL_PLAIN_PASSWORD }}
+
+          # Global
+          SERVER_IP=${{ secrets.SERVER_IP }}
           EOL
 
       - name: Deploy to the server
