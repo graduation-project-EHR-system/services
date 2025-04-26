@@ -15,6 +15,7 @@ services:
     ports:
       - "8090:80"
     environment:
+      APP_NAME: "Staff Management Service"
       DB_CONNECTION: ${staff_management_DB_CONNECTION}
       DB_HOST: ${staff_management_DB_HOST}
       DB_PORT: ${staff_management_DB_PORT}
