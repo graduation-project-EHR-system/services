@@ -21,6 +21,7 @@ services:
       DB_DATABASE: ${staff_management_DB_DATABASE}
       DB_USERNAME: ${staff_management_DB_USERNAME}
       DB_PASSWORD: ${staff_management_DB_PASSWORD}
+      APP_URL: ${staff_management_APP_URL}
       JWT_SECRET: ${JWT_SECRET}
 
   watchtower:
