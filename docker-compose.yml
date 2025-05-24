@@ -25,6 +25,22 @@ services:
       APP_URL: ${staff_management_APP_URL}
       JWT_SECRET: ${JWT_SECRET}
 
+  booking:
+    image: shehabwaleed/gp_booking_service:latest
+    hostname: "bookingService"
+    ports:
+      - "8091:80"
+    environment:
+      APP_NAME: "Booking Service"
+      DB_CONNECTION: ${booking_DB_CONNECTION}
+      DB_HOST: ${booking_DB_HOST}
+      DB_PORT: ${booking_DB_PORT}
+      DB_DATABASE: ${booking_DB_DATABASE}
+      DB_USERNAME: ${booking_DB_USERNAME}
+      DB_PASSWORD: ${booking_DB_PASSWORD}
+      APP_URL: ${booking_APP_URL}
+      JWT_SECRET: ${JWT_SECRET}
+
   watchtower:
     image: containrrr/watchtower
     volumes:
