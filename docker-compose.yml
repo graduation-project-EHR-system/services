@@ -9,6 +9,14 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=${user_management_CONNECTION_STRING}
 
+  patientProfile:
+    image: shehabwaleed/gp_patient_profile_service:latest
+    hostname: "patientProfileService"
+    ports:
+      - "8081:80"
+    environment:
+      - ConnectionStrings__DefaultConnection=${patient_profile_CONNECTION_STRING}
+
   staffManagement:
     image: shehabwaleed/gp_staff_management:latest
     hostname: "staffManagementService"
