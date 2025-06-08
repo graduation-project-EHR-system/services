@@ -32,6 +32,7 @@ services:
       DB_PASSWORD: ${staff_management_DB_PASSWORD}
       APP_URL: ${staff_management_APP_URL}
       JWT_SECRET: ${JWT_SECRET}
+      KAFKA_BROKERS: ${staff_management_KAFKA_BROKERS}
 
   booking:
     image: shehabwaleed/gp_booking_service:latest
@@ -48,6 +49,7 @@ services:
       DB_PASSWORD: ${booking_DB_PASSWORD}
       APP_URL: ${booking_APP_URL}
       JWT_SECRET: ${JWT_SECRET}
+      KAFKA_BROKERS: ${booking_KAFKA_BROKERS}
 
   watchtower:
     image: containrrr/watchtower

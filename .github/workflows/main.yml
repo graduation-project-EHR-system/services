@@ -32,6 +32,7 @@ jobs:
           staff_management_DB_USERNAME=${{ secrets.staff_management_DB_USERNAME }}
           staff_management_DB_PASSWORD=${{ secrets.staff_management_DB_PASSWORD }}
           staff_management_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/staff
+          staff_management_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           
           # Booking service
@@ -42,6 +43,7 @@ jobs:
           booking_DB_USERNAME=${{ secrets.booking_DB_USERNAME }}
           booking_DB_PASSWORD=${{ secrets.booking_DB_PASSWORD }}
           booking_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/booking
+          booking_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           
           # User management service
