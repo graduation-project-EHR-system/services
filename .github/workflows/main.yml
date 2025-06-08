@@ -31,7 +31,7 @@ jobs:
           staff_management_DB_DATABASE=${{ secrets.staff_management_DB_DATABASE }}
           staff_management_DB_USERNAME=${{ secrets.staff_management_DB_USERNAME }}
           staff_management_DB_PASSWORD=${{ secrets.staff_management_DB_PASSWORD }}
-          staff_management_APP_URL=http://${{ secrets.SERVER_IP }}/staff
+          staff_management_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/staff
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           
           # Booking service
@@ -41,7 +41,7 @@ jobs:
           booking_DB_DATABASE=${{ secrets.booking_DB_DATABASE }}
           booking_DB_USERNAME=${{ secrets.booking_DB_USERNAME }}
           booking_DB_PASSWORD=${{ secrets.booking_DB_PASSWORD }}
-          booking_APP_URL=http://${{ secrets.SERVER_IP }}/booking
+          booking_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/booking
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           
           # User management service
@@ -49,10 +49,6 @@ jobs:
 
           # Patient profile service
           patient_profile_CONNECTION_STRING=${{ secrets.patient_profile_CONNECTION_STRING }}
-
-          # Kafka
-          KAFKA_SASL_PLAIN_USERNAME=${{ secrets.KAFKA_SASL_PLAIN_USERNAME }}
-          KAFKA_SASL_PLAIN_PASSWORD=${{ secrets.KAFKA_SASL_PLAIN_PASSWORD }}
 
           # Global
           SERVER_IP=${{ secrets.SERVER_IP }}
