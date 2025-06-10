@@ -34,6 +34,18 @@ jobs:
           staff_management_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/staff
           staff_management_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
+
+          # Staff management service H2
+          staff_management_h2_DB_CONNECTION=${{ secrets.staff_management_h2_DB_CONNECTION }}
+          staff_management_h2_DB_HOST=${{ secrets.staff_management_h2_DB_HOST }}
+          staff_management_h2_DB_PORT=${{ secrets.staff_management_h2_DB_PORT }}
+          staff_management_h2_DB_DATABASE=${{ secrets.staff_management_h2_DB_DATABASE }}
+          staff_management_h2_DB_USERNAME=${{ secrets.staff_management_h2_DB_USERNAME }}
+          staff_management_h2_DB_PASSWORD=${{ secrets.staff_management_h2_DB_PASSWORD }}
+          staff_management_h2_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/staff
+          staff_management_h2_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
+          JWT_SECRET_h2=${{ secrets.JWT_SECRET_h2 }}
+
           
           # Booking service
           booking_DB_CONNECTION=${{ secrets.booking_DB_CONNECTION }}
@@ -46,11 +58,28 @@ jobs:
           booking_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           
+          # Booking service H2
+          booking_h2_DB_CONNECTION=${{ secrets.booking_h2_DB_CONNECTION }}
+          booking_h2_DB_HOST=${{ secrets.booking_h2_DB_HOST }}
+          booking_h2_DB_PORT=${{ secrets.booking_h2_DB_PORT }}
+          booking_h2_DB_DATABASE=${{ secrets.booking_h2_DB_DATABASE }}
+          booking_h2_DB_USERNAME=${{ secrets.booking_h2_DB_USERNAME }}
+          booking_h2_DB_PASSWORD=${{ secrets.booking_h2_DB_PASSWORD }}
+          booking_h2_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/booking
+          booking_h2_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
+          JWT_SECRET_h2=${{ secrets.JWT_SECRET_h2 }}
+          
           # User management service
           user_management_CONNECTION_STRING=${{ secrets.user_management_CONNECTION_STRING }}
 
+          # User management service H2
+          user_management_h2_CONNECTION_STRING=${{ secrets.user_management_h2_CONNECTION_STRING }}
+
           # Patient profile service
           patient_profile_CONNECTION_STRING=${{ secrets.patient_profile_CONNECTION_STRING }}
+
+          # Patient profile service H2
+          patient_profile_h2_CONNECTION_STRING=${{ secrets.patient_profile_h2_CONNECTION_STRING }}
 
           # Global
           SERVER_IP=${{ secrets.SERVER_IP }}

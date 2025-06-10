@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # User Management Service
   usermanagement:
     image: shehabwaleed/gp_auth_service:latest
     hostname: "userManagementService"
@@ -9,6 +10,15 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=${user_management_CONNECTION_STRING}
 
+  usermanagementH2:
+    image: shehabwaleed/gp_auth_service:latest
+    hostname: "userManagementServiceH2"
+    ports:
+      - "8082:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=${user_management_h2_CONNECTION_STRING}
+
+  # Patient Profile Service
   patientProfile:
     image: shehabwaleed/gp_patient_profile_service:latest
     hostname: "patientProfileService"
@@ -17,6 +27,16 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=${patient_profile_CONNECTION_STRING}
 
+  patientProfileH2:
+    image: shehabwaleed/gp_patient_profile_service:latest
+    hostname: "patientProfileServiceH2"
+    ports:
+      - "8083:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=${patient_profile_h2_CONNECTION_STRING}
+
+
+  # Staff Management Service
   staffManagement:
     image: shehabwaleed/gp_staff_management:latest
     hostname: "staffManagementService"
@@ -34,6 +54,24 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       KAFKA_BROKERS: ${staff_management_KAFKA_BROKERS}
 
+  staffManagementH2:
+    image: shehabwaleed/gp_staff_management:latest
+    hostname: "staffManagementServiceH2"
+    ports:
+      - "8092:80"
+    environment:
+      APP_NAME: "Staff Management Service H2"
+      DB_CONNECTION: ${staff_management_h2_DB_CONNECTION}
+      DB_HOST: ${staff_management_h2_DB_HOST}
+      DB_PORT: ${staff_management_h2_DB_PORT}
+      DB_DATABASE: ${staff_management_h2_DB_DATABASE}
+      DB_USERNAME: ${staff_management_h2_DB_USERNAME}
+      DB_PASSWORD: ${staff_management_h2_DB_PASSWORD}
+      APP_URL: ${staff_management_h2_APP_URL}
+      JWT_SECRET: ${JWT_SECRET_h2}
+      KAFKA_BROKERS: ${staff_management_h2_KAFKA_BROKERS}
+
+  # Booking Service
   booking:
     image: shehabwaleed/gp_booking_service:latest
     hostname: "bookingService"
@@ -50,6 +88,23 @@ services:
       APP_URL: ${booking_APP_URL}
       JWT_SECRET: ${JWT_SECRET}
       KAFKA_BROKERS: ${booking_KAFKA_BROKERS}
+
+  bookingH2:
+    image: shehabwaleed/gp_booking_service:latest
+    hostname: "bookingServiceH2"
+    ports:
+      - "8093:80"
+    environment:
+      APP_NAME: "Booking Service H2"
+      DB_CONNECTION: ${booking_h2_DB_CONNECTION}
+      DB_HOST: ${booking_h2_DB_HOST}
+      DB_PORT: ${booking_h2_DB_PORT}
+      DB_DATABASE: ${booking_h2_DB_DATABASE}
+      DB_USERNAME: ${booking_h2_DB_USERNAME}
+      DB_PASSWORD: ${booking_h2_DB_PASSWORD}
+      APP_URL: ${booking_h2_APP_URL}
+      JWT_SECRET: ${JWT_SECRET_h2}
+      KAFKA_BROKERS: ${booking_h2_KAFKA_BROKERS}
 
   watchtower:
     image: containrrr/watchtower
