@@ -86,6 +86,9 @@ jobs:
           # EHR service
           ehr_CONNECTION_STRING=${{ secrets.ehr_CONNECTION_STRING }}
 
+          # EHR auth service
+          ehr_auth_CONNECTION_STRING=${{ secrets.ehr_auth_CONNECTION_STRING }}
+
           # Global
           SERVER_IP=${{ secrets.SERVER_IP }}
           EOL
