@@ -17,6 +17,8 @@ services:
       - "8082:8080"
     environment:
       - ConnectionStrings__DefaultConnection=${user_management_h2_CONNECTION_STRING}
+      - Kafka__BootstrapServers=${user_management_h2_KAFKA_BROKERS}
+
 
   # Patient Profile Service
   patientProfile:
@@ -34,6 +36,7 @@ services:
       - "8083:8080"
     environment:
       - ConnectionStrings__DefaultConnection=${patient_profile_h2_CONNECTION_STRING}
+      - Kafka__BootstrapServers=${patient_profile_h2_KAFKA_BROKERS}
 
 
   # Staff Management Service
