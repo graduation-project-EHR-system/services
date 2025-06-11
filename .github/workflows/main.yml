@@ -42,8 +42,8 @@ jobs:
           staff_management_h2_DB_DATABASE=${{ secrets.staff_management_h2_DB_DATABASE }}
           staff_management_h2_DB_USERNAME=${{ secrets.staff_management_h2_DB_USERNAME }}
           staff_management_h2_DB_PASSWORD=${{ secrets.staff_management_h2_DB_PASSWORD }}
-          staff_management_h2_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/staff
-          staff_management_h2_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
+          staff_management_h2_APP_URL=${{ secrets.HOSPITAL_TWO_BASE_URL }}/staff
+          staff_management_h2_KAFKA_BROKERS=${{ secrets.HOSPITAL_TWO_KAFKA_BROKERS }}
           JWT_SECRET_h2=${{ secrets.JWT_SECRET_h2 }}
 
           
@@ -65,8 +65,8 @@ jobs:
           booking_h2_DB_DATABASE=${{ secrets.booking_h2_DB_DATABASE }}
           booking_h2_DB_USERNAME=${{ secrets.booking_h2_DB_USERNAME }}
           booking_h2_DB_PASSWORD=${{ secrets.booking_h2_DB_PASSWORD }}
-          booking_h2_APP_URL=${{ secrets.HOSPITAL_ONE_BASE_URL }}/booking
-          booking_h2_KAFKA_BROKERS=${{ secrets.HOSPITAL_ONE_KAFKA_BROKERS }}
+          booking_h2_APP_URL=${{ secrets.HOSPITAL_TWO_BASE_URL }}/booking
+          booking_h2_KAFKA_BROKERS=${{ secrets.HOSPITAL_TWO_KAFKA_BROKERS }}
           JWT_SECRET_h2=${{ secrets.JWT_SECRET_h2 }}
           
           # User management service
