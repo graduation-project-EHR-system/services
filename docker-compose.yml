@@ -110,7 +110,7 @@ services:
       KAFKA_BROKERS: ${booking_h2_KAFKA_BROKERS}
 
   ehr:
-    image: shehabwaleed/gp_ehr_service:latest
+    image: shehabwaleed/ehr_service:latest
     hostname: "ehrService"
     ports:
       - "8085:8080"
