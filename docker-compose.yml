@@ -112,3 +112,25 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     command: --cleanup --interval 5
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "9090:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=hospital-one
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=${SERVER_IP}:9093
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=${SERVER_IP}:2181
+    restart: unless-stopped
+
+  kafka-ui-h2:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui-h2
+    ports:
+      - "9091:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=hospital-two
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=${SERVER_IP}:9095
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=${SERVER_IP}:2182
+    restart: unless-stopped
