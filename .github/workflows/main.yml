@@ -73,7 +73,7 @@ jobs:
           user_management_CONNECTION_STRING=${{ secrets.user_management_CONNECTION_STRING }}
 
           # User management service H2
-          user_management_h2_CONNECTION_S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TRING=${{ secrets.user_management_h2_CONNECTION_STRING }}
+          user_management_h2_CONNECTION_STRING=${{ secrets.user_management_h2_CONNECTION_STRING }}
           user_management_h2_KAFKA_BROKERS=${{ secrets.HOSPITAL_TWO_KAFKA_BROKERS }}
 
           # Patient profile service
